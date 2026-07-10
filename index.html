@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIにやらせるマン｜その思い出、スマホの中だけじゃもったいない。</title>
+<meta name="description" content="AIで作った“あの一枚”を、飾れる・めくれる・贈れる“形”に。スマホの中で眠っている家族の思い出を、もっと楽しむ手をそっと置いておきます。">
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#F3ECDF; --bg-glow:#F8EFDD; --card:#FFFDF8;
+    --line:#E6DBC7; --hair:#C9B78F;
+    --ink:#2C241B; --ink2:#5C5142; --mut:#9A8A72; --mut2:#B6A788;
+    --clay:#B0663C; --clay2:#8E4E29; --slate:#6E7F84;
+    --serif:"Hiragino Mincho ProN","YuMincho","Yu Mincho",serif;
+    --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
+    --maru:"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:radial-gradient(120% 55% at 50% -10%, var(--bg-glow), transparent 62%), var(--bg);
+    color:var(--ink); min-height:100vh; font-family:var(--gothic);
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .wrap{width:min(92vw,1080px);margin:0 auto;padding:0 clamp(18px,4vw,40px) 52px}
+
+  /* hero */
+  .hero{text-align:center;padding:48px 8px 34px}
+  .ava{width:clamp(74px,10vw,124px);height:clamp(74px,10vw,124px);border-radius:50%;object-fit:cover;
+    background:#EFE3CC;border:1px solid var(--hair);
+    box-shadow:0 6px 20px rgba(140,100,55,.18)}
+  .wordmark{font-family:var(--gothic);font-size:10.5px;letter-spacing:.42em;color:var(--slate);
+    margin:18px 0 0;font-weight:600;text-indent:.42em}
+  .hline{width:26px;height:1px;background:var(--hair);margin:14px auto 16px}
+  .hero h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,50px);line-height:1.6;font-weight:600;
+    letter-spacing:.03em;color:var(--ink);word-break:keep-all;text-wrap:balance}
+  .hero h1 em{font-style:normal;color:var(--clay2);
+    background:linear-gradient(transparent 62%, rgba(176,102,60,.14) 62%)}
+
+  /* section label */
+  .sec{margin-top:30px}
+  .kick{display:flex;align-items:center;gap:12px;margin:0 2px 12px}
+  .kick .idx{font-family:var(--serif);font-size:13px;color:var(--clay);font-style:italic;
+    letter-spacing:.05em}
+  .kick .kl{font-family:var(--gothic);font-size:11px;letter-spacing:.34em;color:var(--slate);
+    font-weight:600}
+  .kick .kln{flex:1;height:1px;background:var(--line)}
+
+  /* card */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 4px 20px rgba(120,88,48,.05)}
+  .cimg{aspect-ratio:16/10;background:#F1E7D4;border-bottom:1px solid var(--line);display:block}
+  .cimg img{width:100%;height:100%;object-fit:cover;display:block}
+  .cimg.ph{background:
+      repeating-linear-gradient(135deg,#F0E6D2,#F0E6D2 14px,#ECE0C9 14px,#ECE0C9 28px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--mut2)}
+  .cimg.ph .ic{font-size:26px;opacity:.8}
+  .cimg.ph .cap{font-size:10px;letter-spacing:.1em}
+  .cbody{padding:clamp(18px,3.6vw,28px) clamp(20px,4vw,30px) clamp(16px,3.2vw,24px)}
+  .card h2{font-family:var(--serif);font-size:clamp(19px,2.8vw,32px);font-weight:600;letter-spacing:.03em;
+    line-height:1.5;color:var(--ink)}
+  .card h2 em{font-style:normal;color:var(--clay2)}
+  .cbody > p{font-size:clamp(13px,1.7vw,19px);line-height:1.95;color:var(--ink2);margin:10px 0 16px}
+
+  .cta{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+    background:var(--clay);color:#FFFCF6;border-radius:11px;padding:clamp(14px,2.8vw,17px) 16px;
+    font-family:var(--gothic);font-size:clamp(14px,1.9vw,20px);font-weight:600;letter-spacing:.04em;
+    box-shadow:0 5px 14px rgba(176,102,60,.24);transition:transform .12s ease,box-shadow .12s ease}
+  .cta:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(176,102,60,.30)}
+  .cta:active{transform:translateY(0)}
+  .cta:focus-visible{outline:2.5px solid var(--clay2);outline-offset:2px}
+  .cta .s{font-size:10.5px;font-weight:400;opacity:.85;letter-spacing:.06em}
+  .cta .ar{font-size:13px;opacity:.75}
+  .cta.ghost{background:transparent;color:var(--clay2);border:1px solid var(--hair);
+    box-shadow:none;margin-top:10px}
+  .cta.ghost:hover{background:rgba(176,102,60,.05);transform:none;box-shadow:none}
+
+  /* caveat — below the link */
+  .cav{display:flex;gap:8px;margin-top:11px;padding-left:2px;
+    font-size:11.5px;line-height:1.7;color:var(--mut)}
+  .cav::before{content:"※";color:var(--clay);flex:0 0 auto;font-size:11px;line-height:1.7}
+  .pr{font-family:var(--gothic);font-size:10px;letter-spacing:.14em;color:var(--mut2);
+    text-align:right;margin-top:12px}
+
+  footer{text-align:center;margin-top:34px}
+  .back{font-family:var(--gothic);font-size:12px;color:var(--slate);text-decoration:none;
+    font-weight:600;letter-spacing:.08em;border-bottom:1px solid var(--hair);padding-bottom:2px}
+  .back:focus-visible{outline:2.5px solid var(--clay2);outline-offset:2px}
+  .disc{font-size:10.5px;color:var(--mut2);margin-top:16px;line-height:1.8}
+
+  /* 作り手からの一言（最下部・別トラック入口） */
+  .pnote{margin-top:clamp(34px,5.5vw,50px);text-align:center;border-radius:22px;overflow:hidden;
+    background:linear-gradient(180deg,#FBF1DC,#FCFAF6);border:1px solid var(--line);
+    box-shadow:0 8px 26px rgba(120,88,48,.07)}
+  .pnote-img{aspect-ratio:16/10;background:#F1E7D4;border-bottom:1px solid var(--line)}
+  .pnote-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .pnote-body{padding:0 clamp(22px,4vw,36px) clamp(28px,4.5vw,40px)}
+  .pnote .pav{display:block;width:clamp(58px,8vw,74px);height:clamp(58px,8vw,74px);border-radius:50%;object-fit:cover;
+    border:3px solid #fff;box-shadow:0 6px 16px rgba(140,100,55,.24);
+    margin:calc(clamp(58px,8vw,74px) / -2) auto 14px;position:relative;z-index:1}
+  .pnote .pn-lead{font-size:clamp(11.5px,1.6vw,13px);color:var(--mut);margin:0 0 12px;letter-spacing:.05em}
+  .pnote .pn-body{font-size:clamp(14px,2vw,17px);line-height:2;color:var(--ink2);margin:0 auto 22px;max-width:27em}
+  .pnote .pn-body .u{display:inline-block}
+  .pnote .cta{max-width:380px;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <!-- ↓ アカウントの3Dアイコンを icon.png としてこのフォルダに置く（推奨・正方形） -->
+    <img class="ava" src="icon.png" alt="AIにやらせるマン" onerror="this.style.visibility='hidden'">
+    <div class="wordmark">AIにやらせるマン</div>
+    <div class="hline"></div>
+    <h1>その思い出、<br><em>スマホの中だけじゃ<br>もったいない。</em></h1>
+  </section>
+
+  <section class="sec">
+    <div class="kick"><span class="idx">i</span><span class="kl">かざる</span><span class="kln"></span></div>
+    <div class="card">
+      <!-- 画像：飾ったプリントの雰囲気画像（ローカル kazaru.jpg）。あなたの実物写真に差し替え可 -->
+      <div class="cimg"><img src="kazaru.jpg" alt="飾ったプリント" loading="lazy"></div>
+      <div class="cbody">
+        <h2>机の上に、<em>お気に入りの1枚</em></h2>
+        <p>スマホの中だと見返さないのに、机や玄関に飾った1枚は毎日目に入る。ふとした時に、ちょっと笑えるんです。1枚から、数分で頼めますよ。</p>
+        <a class="cta" href="https://px.a8.net/svt/ejp?a8mat=4B650G+9VFZ3M+2LNY+BZ8OX" target="_blank" rel="nofollow noopener">1枚からプリント<span class="s">しろくまフォト</span><span class="ar">→</span></a>
+        <div class="cav">きれいに出したいので、元写真はなるべく大きいデータで。</div>
+        <div class="pr">#PR</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="kick"><span class="idx">ii</span><span class="kl">まとめる</span><span class="kln"></span></div>
+    <div class="card">
+      <!-- 画像：フォトブックの雰囲気画像（ローカル matomeru.jpg）。あなたの実物写真に差し替え可 -->
+      <div class="cimg"><img src="matomeru.jpg" alt="フォトブック" loading="lazy"></div>
+      <div class="cbody">
+        <h2>たまってきたら、<em>めくれる1冊に</em></h2>
+        <p>変換した写真が増えてきたら、まとめて本に。ページをめくる感じが、地味にたまらないんです。アプリで選ぶだけで、製本して届きますよ。</p>
+        <a class="cta" href="https://px.a8.net/svt/ejp?a8mat=4B650G+9T28OI+22KG+BZVUA" target="_blank" rel="nofollow noopener">フォトブックにする<span class="s">フジフォトアルバム</span><span class="ar">→</span></a>
+        <a class="cta ghost" href="https://px.a8.net/svt/ejp?a8mat=4B650G+9QOI9E+3WUA+5YZ77" target="_blank" rel="nofollow noopener">もう少し気軽に1冊<span class="s">Photoback</span></a>
+        <div class="cav">選ぶのに少しだけ時間はかかるけど、それも楽しい時間で。</div>
+        <div class="pr">#PR</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="kick"><span class="idx">iii</span><span class="kl">おくる</span><span class="kln"></span></div>
+    <div class="card">
+      <!-- 画像：贈り物ギフトブックの雰囲気画像（AI生成・ローカル ehon.jpg）。楽天の実商品画像は ehon_rakuten.jpg にバックアップ済み（戻すなら src を差し替え） -->
+      <div class="cimg"><img src="ehon.jpg" alt="贈り物の絵本" loading="lazy"></div>
+      <div class="cbody">
+        <h2>名前が入った、<em>その子の絵本</em></h2>
+        <p>物語の主人公が、その子の名前になってる絵本。誕生日や記念日に渡すと、贈った側までうれしくなります。おじいちゃん・おばあちゃんへの贈り物にも。</p>
+        <a class="cta" href="https://hb.afl.rakuten.co.jp/hgc/g00u9kbi.j00p6823.g00u9kbi.j00p7cf2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fpersonalizedbook%2Fwhos-birthday-tomorrow-hc%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fpersonalizedbook%2Fi%2F10000000%2F&rafcid=wsc_i_is_f3cfd055-86ca-4b66-afa1-0f543508c690" target="_blank" rel="nofollow noopener">名前入り絵本を見る<span class="s">楽天</span><span class="ar">→</span></a>
+        <div class="cav">届くまで数日みておくと安心。記念日は早めに。</div>
+        <div class="pr">#PR</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 公式LINE/LP未公開のため一旦非表示。戻すには style="display:none" を外し、CTAの href を lp_story公開後の実URLに差し替え -->
+  <section class="sec" style="display:none">
+    <div class="pnote">
+      <div class="pnote-img"><img src="hajimekata.jpg" alt="スマホひとつではじめる" loading="lazy"></div>
+      <div class="pnote-body">
+        <img class="pav" src="icon.png" alt="AIにやらせるマン" onerror="this.style.display='none'">
+        <div class="pn-lead">ここまで見てくれて、ありがとうございます。</div>
+        <p class="pn-body"><span class="u">AIにやらせてるだけなのに、</span><span class="u">これがけっこうすごくて。</span><span class="u">スマホひとつで、</span><span class="u">ここまでできちゃうんだ、って。</span><span class="u">やり方、ぜんぶ置いておくので、</span><span class="u">よかったらどうぞ。</span></p>
+        <!-- href：副業ストーリーLP（lp_story.html）公開後の実URLに差し替え。未公開の間はこの枠ごと非表示でも可 -->
+        <a class="cta" href="#" target="_blank" rel="noopener">そのやり方を見る<span class="ar">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back" href="https://www.threads.com/@ai_yaraseruman" target="_blank" rel="noopener">@ai_yaraseruman に戻る</a>
+    <div class="disc">
+      当ページのリンクは広告（アフィリエイト）を含みます。掲載内容は変更される場合があります。<br>
+      紹介しているのは、僕が実際に使って「これは良かった」と思えたものだけです。
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
